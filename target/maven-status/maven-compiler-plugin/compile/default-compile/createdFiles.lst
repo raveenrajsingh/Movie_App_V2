@@ -1,0 +1,6 @@
+org\springRaveen\com\security\SecurityAdapter.class
+org\springRaveen\com\MovieInfoApplication.class
+org\springRaveen\com\Entity\wish.class
+org\springRaveen\com\controller\ControllerMovie.class
+org\springRaveen\com\security\SecurityAdapter$1.class
+org\springRaveen\com\global\GlobalData.class
