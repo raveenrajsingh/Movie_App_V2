@@ -1,0 +1,119 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>MovieInfo</title>
+    <link rel="stylesheet" href="https://bootswatch.com/5/cyborg/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">Raveen's Movie Info</a>
+        </div>
+      </div>
+    </nav>
+<br><br><br><br>
+    <div class="card border-primary mb-3">
+    	<div class="card-body">
+	    	<h3 class="text-center">Search For Any Movie</h3>
+	    	<form id="searchForm">
+	    		<input type="text" class="form-control" id="searchText" placeholder="Search Movies...">
+	    	</form>
+	    </div>
+    </div>
+<br><br>
+    <div class="container">
+      <div id="movies" class="row"></div>
+    </div>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+
+  </body>
+</html>-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Movie App</title>
+</head>
+<body>
+   <div style="display:inline-flex;">  <div  align="center" style="color: skyblue;font-family: cursive;"><h3><strong> Raveen Raj Singh's</strong></h3></div>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div align="center" style="color: skyblue;font-family: cursive;"><h1><strong> Movie Google</strong></h1></div></div>
+    <header>
+   
+       <div style="display:inline-flex;">
+	<th:block th:fragment="header">
+	<div sec:authorize="isAuthenticated()" > 
+		<form th:action="@{/logout}" method="post" >
+		<!--  <p style="color: white">User ID <b><span sec:authentication="principal.name"  style="color: white"></span></b></p><script>-->
+		<!--  <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+			<input type="submit" value="Logout"  class="logout" />
+		</form>
+	</div>
+	</th:block>
+	&nbsp;
+	<div align="left">
+	<form th:action="@{/wishlist}" method="get">
+         <input type="submit" value="Wishlist" id="wishlist" class="logout">
+        </form></div>
+        </div>
+        &nbsp;
+        <form  id="form">
+            <input type="text" placeholder="Search" id="search" class="search">
+        </form>
+    </header>
+
+    <div id="tags"></div>
+    <div id="myNav" class="overlay">
+
+        <!-- Button to close the overlay navigation -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      
+        <!-- Overlay content -->
+        <div class="overlay-content" id="overlay-content"></div>
+        
+        <a href="javascript:void(0)" class="arrow left-arrow" id="left-arrow">&#8656;</a> 
+        
+        <a href="javascript:void(0)" class="arrow right-arrow" id="right-arrow" >&#8658;</a>
+
+      </div>
+    <main id="main"></main>
+    <div class="pagination">
+        <div class="page" id="prev">Previous Page</div>
+        <div class="current" id="current">1</div>
+        <div class="page" id="next">Next Page</div>
+
+    </div>
+
+    <script src="/js/main.js"></script>
+    <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"> </script>
+ <script type="text/javascript">
+    $.ajaxSetup({
+  beforeSend : function(xhr, settings) {
+    if (settings.type == 'POST' || settings.type == 'PUT'
+        || settings.type == 'DELETE') {
+      if (!(/^http:.*/.test(settings.url) || /^https:.*/
+        .test(settings.url))) {
+        // Only send the token to relative URLs i.e. locally.
+        xhr.setRequestHeader("X-XSRF-TOKEN",
+          Cookies.get('XSRF-TOKEN'));
+      }
+    }
+  }
+});
+    </script>
+</body>
+</html>
